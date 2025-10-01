@@ -3,6 +3,7 @@ import { FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angula
 import { ProductsService } from '../../services/products.service';
 import { INewProductRequest } from '../../interfaces/new-product-request';
 import { take } from 'rxjs';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-new-product',
@@ -22,6 +23,7 @@ export class NewProduct {
   });
 
   private readonly _productsService = inject(ProductsService);
+  private readonly _router = inject(Router)
 
 
   saveProduct() {
@@ -80,6 +82,10 @@ export class NewProduct {
     }
 
     reader.readAsDataURL(file);
+  }
+
+  cancel() {
+    this._router.navigate(['/products']);
   }
 
 }
